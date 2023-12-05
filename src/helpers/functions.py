@@ -2,13 +2,11 @@ from colorama import just_fix_windows_console, Fore, Style
 just_fix_windows_console()
 
 class Client:
-    def __init__(self, name, email, password):
+    def __init__(self, name, email, password, balance):
         self.name = name
         self.email = email
         self.password = password
-
-def __str__(self):
-        return f"Client(name={self.name}, email={self.email}, password={self.password})"
+        self.balance = balance
 
 clients = []
 
@@ -22,10 +20,12 @@ def create_account():
     confirm_password = input("Confirme a senha:")
 
     if password == confirm_password:
-        new_client = Client(name, email, password)
+        balance = 0
+        new_client = Client(name, email, password, balance)
         clients.append(new_client)
         print("Cadastro realizado com sucesso!")
-        print(clients)
+        
+        return True
     else:
         print(Fore.RED + "As senhas não são iguais." + Style.RESET_ALL)
 
@@ -33,13 +33,19 @@ def login():
     email = input("Digite seu e-mail:")
     password = input("Digite sua senha:")
 
-    logged_in = (client.email == email and client.password == password for client in clients)
+    logged_clients = [client for client in clients if client.email == email and client.password == password]
 
-    if logged_in:
+    if logged_clients:
         print("Você está logado(a), Bem-vindo(a)!")
-        actions(email)
+        for logged_client in logged_clients:
+            print(f"Nome: {logged_client.name}, E-mail: {logged_client.email}, Balance:{logged_client.balance}")
+            actions()
+            return False
+        
+        
     else:
         print(Fore.RED + "E-mail ou senha incorretos!" + Style.RESET_ALL)
+        print(logged_clients)
 
 
 
