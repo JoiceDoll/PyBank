@@ -17,3 +17,7 @@ def welcome():
             create_account()
         else:
             print(Fore.RED + "Opção inválida. Por favor, escolha 1 ou 2." + Style.RESET_ALL)
+
+
+def later():
+    print("Novo teste de função")

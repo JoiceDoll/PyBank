@@ -11,18 +11,21 @@ class Client:
 clients = []
 
 def actions():
-    for client in clients:
-        print(Fore.GREEN + f"Saldo: {client.balance}" + Style.RESET_ALL)
-        print("1 - Depósito")
-        print("2 - Transferência")
-        choices = input("Escolha:")
-        if choices == "1":
-            deposit()
-        elif choices == "2":
-            transfer()
-        else:
-            print(Fore.RED + "Opção inválida. Por favor, escolha 1 ou 2." + Style.RESET_ALL)
-            
+    while True:
+        for client in clients:
+            print(Fore.GREEN + f"Saldo: {client.balance}" + Style.RESET_ALL)
+            print("1 - Depósito")
+            print("2 - Transferência")
+            choices = input("Escolha:")
+            if choices == "1":
+                deposit()
+                continue
+            elif choices == "2":
+                transfer()
+                continue
+            else:
+                print(Fore.RED + "Opção inválida. Por favor, escolha 1 ou 2." + Style.RESET_ALL)
+                continue
         
 def create_account():
     name = input("Digite seu nome:")
@@ -63,7 +66,7 @@ def deposit():
 
         client.balance += deposit_value
 
-        print(Fore.GREEN + f"Saldo: {client.balance}" + Style.RESET_ALL)
+        # print(Fore.GREEN + f"Saldo: {client.balance}" + Style.RESET_ALL)
         
 def transfer():
     for client in clients:
@@ -71,4 +74,4 @@ def transfer():
 
         client.balance -= transfer_value
 
-        print(Fore.GREEN + f"Saldo: {client.balance}" + Style.RESET_ALL)
+        # print(Fore.GREEN + f"Saldo: {client.balance}" + Style.RESET_ALL)
