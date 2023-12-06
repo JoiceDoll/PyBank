@@ -13,16 +13,17 @@ clients = []
 def actions():
     for client in clients:
         print(Fore.GREEN + f"Saldo: {client.balance}" + Style.RESET_ALL)
-        print("1- Depósito")
+        print("1 - Depósito")
         print("2 - Transferência")
         choices = input("Escolha:")
         if choices == "1":
             deposit()
-        else:
+        elif choices == "2":
             transfer()
+        else:
+            print(Fore.RED + "Opção inválida. Por favor, escolha 1 ou 2." + Style.RESET_ALL)
+            
         
-        
-
 def create_account():
     name = input("Digite seu nome:")
     email = input("Digite seu e-mail:")
@@ -51,14 +52,10 @@ def login():
             print(f"Nome: {logged_client.name}, E-mail: {logged_client.email}, Balance:{logged_client.balance}")
             actions()
             return False
-        
-        
+               
     else:
         print(Fore.RED + "E-mail ou senha incorretos!" + Style.RESET_ALL)
         print(logged_clients)
-
-
-
 
 def deposit():
     for client in clients:
