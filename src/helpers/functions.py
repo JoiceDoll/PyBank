@@ -16,6 +16,7 @@ def actions():
             print(Fore.CYAN + f"Saldo: {client.balance}" + Style.RESET_ALL)
             print("1 - Depósito")
             print("2 - Transferência")
+            print("3 - Sair")
             choices = input("Escolha:")
             if choices == "1":
                 deposit()
@@ -23,10 +24,12 @@ def actions():
             elif choices == "2":
                 transfer()
                 continue
+            elif choices == "3":
+                return False
             else:
                 print(Fore.RED + "Opção inválida. Por favor, escolha 1 ou 2." + Style.RESET_ALL)
                 continue
-        
+            
 def create_account():
     name = input("Digite seu nome:")
     email = input("Digite seu e-mail:")
@@ -38,7 +41,6 @@ def create_account():
         new_client = Client(name, email, password, balance)
         clients.append(new_client)
         print(Fore.GREEN + "Cadastro realizado com sucesso!" + Style.RESET_ALL)
-        
         return True
     else:
         print(Fore.RED + "As senhas não são iguais." + Style.RESET_ALL)
@@ -46,15 +48,12 @@ def create_account():
 def login():
     email = input("Digite seu e-mail:")
     password = input("Digite sua senha:")
-
     logged_clients = [client for client in clients if client.email == email and client.password == password]
-
+    
     if logged_clients:
         print(Fore.CYAN + "Você está logado(a), Bem-vindo(a)!" + Style.RESET_ALL)
-        for logged_client in logged_clients:
-            print(f"Nome: {logged_client.name}, E-mail: {logged_client.email}, Balance:{logged_client.balance}")
-            actions()
-            return False
+        actions()
+        return False
                
     else:
         print(Fore.RED + "E-mail ou senha incorretos!" + Style.RESET_ALL)
@@ -71,5 +70,3 @@ def transfer():
         transfer_value = float(input("Quanto você quer transferir?"))
         client.balance -= transfer_value
         print(Fore.RED + f"Histórico: Você transferiu R${transfer_value}" + Style.RESET_ALL)
-
-        # print(Fore.GREEN + f"Saldo: {client.balance}" + Style.RESET_ALL)
