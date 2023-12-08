@@ -1,4 +1,4 @@
-from src.helpers.functions import create_account, login, actions
+from helpers.functions import create_account, login, actions
 from colorama import just_fix_windows_console, Fore, Style, Back
 just_fix_windows_console()
 
